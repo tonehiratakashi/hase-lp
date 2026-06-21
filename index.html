@@ -66,11 +66,45 @@
   }
 
   /* ---------- reveal animation ---------- */
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1.4s cubic-bezier(.16,.7,.3,1),transform 1.4s cubic-bezier(.16,.7,.3,1);}
+  /* graceful easing — long, supple deceleration */
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity 1.5s cubic-bezier(.19,.79,.27,1),transform 1.5s cubic-bezier(.19,.79,.27,1);}
   .reveal.in{opacity:1;transform:none;}
-  .reveal.d1{transition-delay:.15s;}
-  .reveal.d2{transition-delay:.3s;}
-  .reveal.d3{transition-delay:.45s;}
+  .reveal.d1{transition-delay:.14s;}
+  .reveal.d2{transition-delay:.28s;}
+  .reveal.d3{transition-delay:.42s;}
+
+  /* images settle in with a gentle zoom-down (ken-burns landing) */
+  .reveal img{transform:scale(1.12);transition:transform 2s cubic-bezier(.19,.79,.27,1);}
+  .reveal.in img{transform:scale(1);}
+
+  /* image-only blocks: reveal via mask wipe instead of vertical slide */
+  .band.reveal,.feature-img.reveal,.pano.reveal{opacity:1;transform:none;clip-path:inset(0 0 100% 0);transition:clip-path 1.7s cubic-bezier(.19,.79,.27,1);}
+  .band.reveal.in,.feature-img.reveal.in,.pano.reveal.in{clip-path:inset(0 0 0 0);}
+
+  /* image wrappers nested inside grouped reveals — same mask wipe */
+  .era-split.reveal .era-split-img,
+  .mat-strip.reveal .mat-strip-img,
+  .split.reveal .split-img,
+  .design-gallery.reveal .design-gallery-main,
+  .design-gallery.reveal .design-gallery-sub{clip-path:inset(0 0 100% 0);transition:clip-path 1.7s cubic-bezier(.19,.79,.27,1);}
+  .era-split.reveal.in .era-split-img,
+  .mat-strip.reveal.in .mat-strip-img,
+  .split.reveal.in .split-img,
+  .design-gallery.reveal.in .design-gallery-main,
+  .design-gallery.reveal.in .design-gallery-sub{clip-path:inset(0 0 0 0);}
+
+  /* gallery panes cascade in sequence */
+  .design-gallery.reveal .design-gallery-sub:nth-child(2){transition-delay:.18s;}
+  .design-gallery.reveal .design-gallery-sub:nth-child(3){transition-delay:.36s;}
+  .design-gallery.reveal.in .design-gallery-sub:nth-child(2) img{transition-delay:.18s;}
+  .design-gallery.reveal.in .design-gallery-sub:nth-child(3) img{transition-delay:.36s;}
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal,.reveal img,.band.reveal,.feature-img.reveal,.pano.reveal,
+    .era-split.reveal .era-split-img,.mat-strip.reveal .mat-strip-img,
+    .split.reveal .split-img,.design-gallery.reveal .design-gallery-main,
+    .design-gallery.reveal .design-gallery-sub{transition:opacity .4s ease;transform:none;clip-path:none;}
+  }
 
   /* ---------- shared layout ---------- */
   section{position:relative;z-index:2;}
