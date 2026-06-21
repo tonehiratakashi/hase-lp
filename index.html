@@ -88,8 +88,15 @@
   .design-gallery.reveal .design-gallery-sub:nth-child(2){transition-delay:.12s;}
   .design-gallery.reveal .design-gallery-sub:nth-child(3){transition-delay:.24s;}
 
+  /* ink-bleed title reveal — the title develops from a soft blur, like ink settling into paper */
+  .ch-title{filter:blur(16px);opacity:.15;transition:filter 2s cubic-bezier(.2,.6,.2,1) .15s,opacity 2s cubic-bezier(.2,.6,.2,1) .15s;}
+  .ch-head.in .ch-title{filter:blur(0);opacity:1;}
+  .reveal.ink h2,.reveal.ink.ink-self{filter:blur(16px);opacity:.15;transition:filter 2s cubic-bezier(.2,.6,.2,1) .1s,opacity 2s cubic-bezier(.2,.6,.2,1) .1s;}
+  .reveal.ink.in h2,.reveal.ink.ink-self.in{filter:blur(0);opacity:1;}
+
   @media (prefers-reduced-motion:reduce){
     .reveal,.reveal img{transition:opacity .4s ease;transform:none;}
+    .ch-title,.reveal.ink h2,.reveal.ink.ink-self{filter:none;opacity:1;}
   }
 
   /* ---------- shared layout ---------- */
@@ -640,7 +647,7 @@
 <section class="visit" id="visit">
   <div class="wrap">
     <div class="band reveal"><img src="web2/facade2.png" alt="HASE ファサード"></div>
-    <h2 class="reveal">静けさのなかで、<br>この家と向き合う時間を。</h2>
+    <h2 class="reveal ink ink-self">静けさのなかで、<br>この家と向き合う時間を。</h2>
     <p class="intro-line reveal">波の音。石肌のやわらかな温度。檜の芳香。ルーフバルコニーに広がる、海と空。<br>この HASE の価値は、写真や言葉では、その半分も伝わりません。<br>どうぞ、ご自身の五感で確かめてください。</p>
 
     <div class="visit-points reveal">
@@ -682,7 +689,7 @@
   </div>
 
   <div class="narrow" id="booking">
-    <h2 class="reveal">内覧のご予約</h2>
+    <h2 class="reveal ink ink-self">内覧のご予約</h2>
     <p class="fsub reveal">下記をご記入のうえ、送信してください。担当より、ご希望日の調整についてご連絡を差し上げます。</p>
 
     <form class="reveal" id="reserveForm" novalidate>
