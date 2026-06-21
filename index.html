@@ -126,6 +126,54 @@
   .float-cta:hover{background:rgba(248,247,243,.15);border-color:rgba(248,247,243,.5);}
   .float-cta .dot{width:6px;height:6px;border:1px solid currentColor;border-radius:50%;transform:rotate(45deg);}
 
+  /* ---------- HEADER / NAV ---------- */
+  .site-header{position:fixed;top:0;left:0;width:100%;z-index:50;display:flex;align-items:center;justify-content:space-between;
+    padding:1.6em clamp(1.5rem,5vw,3.5rem);transition:background .5s ease,padding .5s ease,border-color .5s ease;
+    border-bottom:1px solid transparent;}
+  .site-header.scrolled{background:rgba(0,18,21,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    padding-top:1.05em;padding-bottom:1.05em;border-bottom:1px solid var(--line);}
+  .site-logo{font-family:var(--serif);font-size:1.4rem;letter-spacing:.42em;text-indent:.42em;color:var(--ivory);
+    text-decoration:none;font-weight:400;transition:opacity .4s;}
+  .site-logo:hover{opacity:.7;}
+  .site-nav{display:flex;align-items:center;gap:clamp(1.4rem,2.4vw,2.6rem);}
+  .site-nav a{font-family:var(--mincho);font-size:.86rem;letter-spacing:.16em;color:var(--ivory);text-decoration:none;
+    font-weight:300;position:relative;padding:.2em 0;transition:color .4s;white-space:nowrap;}
+  .site-nav a:not(.nav-cta)::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);transition:width .4s cubic-bezier(.22,.61,.36,1);}
+  .site-nav a:not(.nav-cta):hover{color:var(--gold);}
+  .site-nav a:not(.nav-cta):hover::after{width:100%;}
+  .nav-cta{border:1px solid rgba(248,247,243,.4);padding:.7em 1.5em !important;letter-spacing:.18em;
+    transition:background .4s,border-color .4s,color .4s;}
+  .nav-cta:hover{background:var(--ivory);color:var(--bg) !important;border-color:var(--ivory);}
+  /* hamburger */
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:6px;width:34px;height:34px;
+    background:none;border:none;cursor:pointer;z-index:60;}
+  .nav-toggle span{display:block;width:26px;height:1.5px;background:var(--ivory);transition:transform .4s ease,opacity .3s ease;margin-left:auto;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+  /* mobile overlay */
+  .nav-overlay{position:fixed;inset:0;z-index:55;background:rgba(0,18,21,.97);backdrop-filter:blur(8px);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2em;
+    opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;}
+  .nav-overlay.open{opacity:1;visibility:visible;}
+  .nav-overlay a{font-family:var(--mincho);font-size:1.25rem;letter-spacing:.22em;color:var(--ivory);text-decoration:none;font-weight:300;
+    opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease,color .3s;}
+  .nav-overlay.open a{opacity:1;transform:none;}
+  .nav-overlay.open a:nth-child(1){transition-delay:.1s;}
+  .nav-overlay.open a:nth-child(2){transition-delay:.16s;}
+  .nav-overlay.open a:nth-child(3){transition-delay:.22s;}
+  .nav-overlay.open a:nth-child(4){transition-delay:.28s;}
+  .nav-overlay.open a:nth-child(5){transition-delay:.34s;}
+  .nav-overlay.open a:nth-child(6){transition-delay:.4s;}
+  .nav-overlay a:hover{color:var(--gold);}
+  .nav-overlay .overlay-cta{margin-top:.6em;border:1px solid rgba(248,247,243,.4);padding:.7em 2em;font-size:1rem;}
+  /* anchor offset for fixed header */
+  section[id]{scroll-margin-top:80px;}
+  @media (max-width:860px){
+    .site-nav{display:none;}
+    .nav-toggle{display:flex;}
+  }
+
   /* ---------- HERO ---------- */
   .hero{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--bg);}
   .hero .hero-bg{position:absolute;inset:0;width:100%;height:100%;}
@@ -313,11 +361,36 @@
 </head>
 <body>
 
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="siteHeader">
+  <a href="#top" class="site-logo">HASE</a>
+  <nav class="site-nav">
+    <a href="#land">土地の物語</a>
+    <a href="#materials">素材の物語</a>
+    <a href="#design">デザインの物語</a>
+    <a href="#visit">物件概要</a>
+    <a href="#reserve" class="nav-cta">内覧予約</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- mobile overlay menu -->
+<div class="nav-overlay" id="navOverlay">
+  <a href="#top">ホーム</a>
+  <a href="#land">土地の物語</a>
+  <a href="#materials">素材の物語</a>
+  <a href="#design">デザインの物語</a>
+  <a href="#visit">物件概要</a>
+  <a href="#reserve" class="overlay-cta">内覧予約</a>
+</div>
+
 <!-- floating CTA -->
 <a href="#reserve" class="float-cta" id="floatCta"><span class="dot"></span>内覧を予約する</a>
 
 <!-- ============ HERO ============ -->
-<section class="hero">
+<section class="hero" id="top">
   <div class="hero-bg">
     <iframe src="https://www.youtube.com/embed/o8ZQD-jTgro?autoplay=1&mute=1&loop=1&playlist=o8ZQD-jTgro&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3" title="HASE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
@@ -341,7 +414,7 @@
 </section>
 
 <!-- ============ CHAPTER 1 ============ -->
-<section class="chapter">
+<section class="chapter" id="land">
   <div class="narrow">
     <div class="ch-head reveal">
       <div class="eyebrow">The Story of Hase</div>
@@ -410,7 +483,7 @@
 </section>
 
 <!-- ============ CHAPTER 2 ============ -->
-<section class="materials">
+<section class="materials" id="materials">
   <div class="narrow">
     <div class="ch-head reveal">
       <div class="eyebrow">The Story of Materials</div>
@@ -493,7 +566,7 @@
 </section>
 
 <!-- ============ CHAPTER 3 ============ -->
-<section class="design">
+<section class="design" id="design">
   <div class="narrow">
     <div class="ch-head reveal">
       <div class="eyebrow">The Story of Design</div>
@@ -538,7 +611,7 @@
 </section>
 
 <!-- ============ VISIT ============ -->
-<section class="visit">
+<section class="visit" id="visit">
   <div class="wrap">
     <div class="band reveal"><img src="web2/facade2.png" alt="HASE ファサード"></div>
     <h2 class="reveal">静けさのなかで、<br>この家と向き合う時間を。</h2>
@@ -623,6 +696,24 @@
 </section>
 
 <script>
+  // header: solid background after scrolling past the top
+  const header = document.getElementById('siteHeader');
+  const onScroll = ()=>{ header.classList.toggle('scrolled', window.scrollY > 40); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // mobile menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const navOverlay = document.getElementById('navOverlay');
+  const closeMenu = ()=>{ navToggle.classList.remove('open'); navOverlay.classList.remove('open'); navToggle.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+  navToggle.addEventListener('click', ()=>{
+    const open = navToggle.classList.toggle('open');
+    navOverlay.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true':'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  navOverlay.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+
   // scroll reveal
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
