@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HASE｜鎌倉・長谷一丁目｜波の音に、耳をすませる暮らし。</title>
+<meta name="description" content="鎌倉・長谷一丁目。八百年、人に愛されてきた場所で。歳月とともに美しくなる、本物の家。1日2組限定・完全予約制の個別内覧を承ります。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#001215;
+    --bg-deep:#060201;
+    --bg-mid:#0d1f22;
+    --ivory:#F8F7F3;
+    --ivory-deep:#e8e4dc;
+    --sumi:#F8F7F3;
+    --sumi-soft:#cdc8be;
+    --ink-grey:#9a9388;
+    --ink-faint:#6b6560;
+    --gold:#b89a6a;
+    --gold-soft:#9c8055;
+    --line:rgba(255,255,255,0.12);
+    --mincho:'Shippori Mincho', 'Yu Mincho', 'YuMincho', serif;
+    --serif:'EB Garamond', serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--mincho);
+    background:var(--bg);
+    color:var(--ivory);
+    line-height:2.0;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    letter-spacing:0.06em;
+  }
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+
+  /* subtle grain on dark */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    mix-blend-mode:screen;
+    opacity:.35;
+  }
+
+  /* ---------- image placeholders ---------- */
+  .ph{
+    position:relative;background:#0a1e21;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ph::after{
+    content:attr(data-label);
+    font-family:var(--serif);font-size:.78rem;letter-spacing:.18em;
+    color:rgba(248,247,243,.28);text-transform:uppercase;text-align:center;
+    padding:1.5em;line-height:1.8;max-width:80%;
+  }
+  .ph::before{
+    content:"";position:absolute;inset:14px;border:1px solid var(--line);
+    pointer-events:none;
+  }
+
+  /* ---------- reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1.4s cubic-bezier(.16,.7,.3,1),transform 1.4s cubic-bezier(.16,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+  .reveal.d1{transition-delay:.15s;}
+  .reveal.d2{transition-delay:.3s;}
+  .reveal.d3{transition-delay:.45s;}
+
+  /* ---------- shared layout ---------- */
+  section{position:relative;z-index:2;}
+  .chapter{padding:20vh 0;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.5rem,7vw,4.5rem);}
+  .narrow{max-width:760px;margin:0 auto;padding:0 clamp(1.5rem,7vw,4.5rem);}
+
+  .vline{width:1px;height:84px;background:var(--line);margin:0 auto;position:relative;}
+  .vline::after{content:"";position:absolute;left:-2px;top:50%;width:5px;height:5px;background:var(--gold);border-radius:50%;transform:rotate(45deg);}
+
+  /* chapter label */
+  .eyebrow{
+    font-family:var(--serif);font-size:.8rem;letter-spacing:.38em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:2.2em;font-weight:400;
+  }
+  .ch-no{font-family:var(--mincho);letter-spacing:.3em;color:rgba(248,247,243,.45);font-size:.9rem;font-weight:300;}
+  h2.ch-title{
+    font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:400;letter-spacing:.12em;
+    margin:.3em 0 .2em;line-height:1.4;color:var(--ivory);
+  }
+  .ch-sub{color:var(--ink-grey);font-size:.9rem;letter-spacing:.22em;font-weight:300;}
+  .ch-head{margin-bottom:5.5em;border-bottom:1px solid var(--line);padding-bottom:2.4em;}
+  .ch-head .row{display:flex;align-items:baseline;gap:1.4em;flex-wrap:wrap;}
+
+  p.body{font-size:1rem;line-height:2.5;color:var(--sumi-soft);margin-bottom:2.8em;letter-spacing:.06em;font-weight:300;}
+
+  /* ---------- fixed CTA ---------- */
+  .float-cta{
+    position:fixed;right:30px;bottom:30px;z-index:50;
+    font-family:var(--mincho);font-size:.85rem;letter-spacing:.2em;font-weight:300;
+    background:rgba(248,247,243,.08);color:var(--ivory);
+    padding:1.05em 1.9em;text-decoration:none;
+    border:1px solid rgba(248,247,243,.25);
+    backdrop-filter:blur(12px);
+    box-shadow:0 14px 40px rgba(0,0,0,.4);
+    opacity:0;transform:translateY(18px);transition:all .8s ease,background .4s,border-color .4s;
+    display:flex;align-items:center;gap:.7em;
+  }
+  .float-cta.show{opacity:1;transform:none;}
+  .float-cta:hover{background:rgba(248,247,243,.15);border-color:rgba(248,247,243,.5);}
+  .float-cta .dot{width:6px;height:6px;border:1px solid currentColor;border-radius:50%;transform:rotate(45deg);}
+
+  /* ---------- HERO ---------- */
+  .hero{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--bg);}
+  .hero .hero-bg{position:absolute;inset:0;width:100%;height:100%;}
+  .hero .hero-bg video{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;object-fit:cover;}
+  .hero .ph{position:absolute;inset:0;width:100%;height:100%;background:#001215;}
+  .hero .ph::before{border-color:rgba(255,255,255,.1);}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,18,21,.2) 0%,rgba(6,2,1,.55) 100%);z-index:1;}
+  .hero-inner{position:relative;z-index:2;color:var(--ivory);padding:2em;}
+  .hero .mark{display:none;}
+  .hero-logo{width:clamp(160px,22vw,280px);margin-bottom:.4em;display:block;margin-left:auto;margin-right:auto;}
+  .hero .mark-diamond{width:160px;height:1px;background:rgba(248,247,243,.3);margin:1.6em auto;position:relative;}
+  .hero .mark-diamond::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;border:1px solid rgba(248,247,243,.5);transform:translate(-50%,-50%) rotate(45deg);background:rgba(248,247,243,.5);}
+  .hero .lead{font-size:clamp(1.1rem,2.6vw,1.65rem);letter-spacing:.28em;font-weight:300;line-height:2.2;margin-bottom:1.2em;}
+  .hero .place{font-family:var(--serif);font-size:.9rem;letter-spacing:.42em;opacity:.6;text-transform:uppercase;}
+  .scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;color:var(--ivory);font-family:var(--serif);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.9em;opacity:.55;}
+  .scroll-hint .ln{width:1px;height:46px;background:rgba(248,247,243,.5);animation:drop 2.4s ease-in-out infinite;transform-origin:top;}
+  @keyframes drop{0%,100%{transform:scaleY(.3);opacity:.3;}50%{transform:scaleY(1);opacity:.9;}}
+
+  /* ---------- INTRO ---------- */
+  .intro{padding:18vh 0 22vh;text-align:center;}
+  .intro .band,.visit .band,.reserve .band{width:100%;height:52vh;min-height:340px;overflow:hidden;}
+  .intro .band{margin-bottom:14vh;}
+  .visit .band{margin-bottom:10vh;}
+  .reserve .band{margin-bottom:11vh;}
+  .intro p{font-size:clamp(1.1rem,2.4vw,1.55rem);line-height:2.8;letter-spacing:.3em;color:var(--ivory);font-weight:300;}
+  .intro .accent{color:var(--gold);}
+  .intro .last{margin-top:2.6em;color:var(--ink-grey);font-size:clamp(.95rem,1.8vw,1.1rem);font-weight:300;letter-spacing:.2em;}
+
+  /* ---------- era splits ---------- */
+  .era-split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:560px;}
+  .era-split:nth-child(even) .era-split-img{order:2;}
+  .era-split:nth-child(even) .era-split-txt{order:1;}
+  .era-split-img{overflow:hidden;position:relative;background:#0a1e21;}
+  .era-split-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .era-split-img.ph-frame{display:flex;align-items:center;justify-content:center;}
+  .era-split-img.ph-frame::before{content:"";position:absolute;inset:16px;border:1px solid var(--line);}
+  .era-split-img.ph-frame::after{content:attr(data-label);font-family:var(--serif);font-size:.7rem;letter-spacing:.14em;color:rgba(248,247,243,.22);text-align:center;padding:1em;line-height:1.8;}
+  .era-split-txt{display:flex;flex-direction:column;justify-content:center;padding:6em clamp(2.5rem,6vw,6rem);background:#080e10;}
+  .era-split-txt .jp{font-family:var(--mincho);font-size:1.4rem;font-weight:400;letter-spacing:.18em;display:block;margin-bottom:.3em;color:var(--ivory);}
+  .era-split-txt .en{font-size:.74rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:3em;}
+  .era-split-txt p{font-size:.96rem;line-height:2.6;color:var(--sumi-soft);letter-spacing:.06em;font-weight:300;margin:0;}
+
+  .feature-img{width:100%;height:64vh;min-height:420px;margin:6em 0;overflow:hidden;}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:9em 0;align-items:stretch;}
+  .split .ph{min-height:420px;}
+  .split-img{min-height:420px;overflow:hidden;position:relative;}
+  .split-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+  .split .txt{display:flex;flex-direction:column;justify-content:center;padding:4.5em 4.5em;background:#0a1e22;}
+  .split .txt h4{font-size:1.25rem;letter-spacing:.14em;margin-bottom:1.2em;font-weight:400;color:var(--ivory);}
+  .split .txt p{font-size:.94rem;line-height:2.5;color:var(--sumi-soft);letter-spacing:.06em;font-weight:300;}
+
+  /* pullquote */
+  .pull{border-left:1px solid var(--gold);padding:.6em 0 .6em 2.4em;margin:6em 0;}
+  .pull .big{font-size:clamp(1.1rem,2.4vw,1.4rem);font-weight:400;letter-spacing:.12em;line-height:2.2;color:var(--ivory);}
+  .pull .small{font-size:.92rem;color:var(--ink-grey);margin-top:.8em;letter-spacing:.12em;font-weight:300;}
+
+  /* ---------- CTA block ---------- */
+  .cta-block{text-align:center;padding:14vh 0;}
+  .cta-block .line{font-size:clamp(1.15rem,2.6vw,1.6rem);font-weight:400;letter-spacing:.18em;line-height:2;margin-bottom:.5em;color:var(--ivory);}
+  .cta-block .sub{color:var(--ink-grey);font-size:.92rem;letter-spacing:.18em;margin-bottom:2.2em;font-weight:300;}
+  .btn{
+    display:inline-flex;align-items:center;gap:1em;
+    font-family:var(--mincho);font-size:.92rem;letter-spacing:.22em;font-weight:300;
+    background:transparent;color:var(--ivory);
+    padding:1.15em 2.6em;text-decoration:none;
+    border:1px solid rgba(248,247,243,.35);position:relative;overflow:hidden;transition:color .5s,border-color .4s;
+  }
+  .btn span{position:relative;z-index:2;}
+  .btn::before{content:"";position:absolute;inset:0;background:rgba(248,247,243,.1);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.7,0,.2,1);z-index:1;}
+  .btn:hover{border-color:rgba(248,247,243,.7);}
+  .btn:hover::before{transform:scaleX(1);}
+  .btn .arr{font-family:var(--serif);}
+
+  /* ---------- materials ---------- */
+  .materials{padding:20vh 0;}
+  .mat-intro{max-width:720px;margin:0 auto 9em;text-align:center;}
+  .mat-strip{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:520px;border-top:1px solid var(--line);}
+  .mat-strip:last-child{border-bottom:1px solid var(--line);}
+  .mat-strip:nth-child(even) .mat-strip-img{order:2;}
+  .mat-strip:nth-child(even) .mat-strip-txt{order:1;}
+  .mat-strip-img{overflow:hidden;position:relative;background:#0a1e21;}
+  .mat-strip-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .mat-strip-img.ph-img{display:flex;align-items:center;justify-content:center;}
+  .mat-strip-img.ph-img::before{content:"";position:absolute;inset:16px;border:1px solid var(--line);}
+  .mat-strip-img.ph-img::after{content:attr(data-label);font-family:var(--serif);font-size:.7rem;letter-spacing:.14em;color:rgba(248,247,243,.22);text-align:center;padding:1em;line-height:1.8;}
+  .mat-strip-txt{display:flex;flex-direction:column;justify-content:center;padding:5.5em clamp(2.5rem,6vw,6rem);}
+  .mat-strip-txt .head{display:flex;align-items:baseline;gap:1em;margin-bottom:1.4em;flex-wrap:wrap;}
+  .mat-strip-txt .name{font-size:1.3rem;font-weight:400;letter-spacing:.14em;color:var(--ivory);}
+  .mat-strip-txt .en{font-family:var(--serif);font-size:.76rem;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;}
+  .mat-strip-txt .use{font-size:.75rem;color:var(--ink-faint);letter-spacing:.16em;border-top:1px solid var(--line);padding-top:.8em;margin-bottom:1.4em;display:block;font-weight:300;}
+  .mat-strip-txt p{font-size:.92rem;line-height:2.4;color:var(--sumi-soft);margin:0;letter-spacing:.06em;font-weight:300;}
+  .mat-foot{max-width:720px;margin:9em auto 0;text-align:center;}
+
+  /* ---------- design chapter ---------- */
+  .design{padding:20vh 0;}
+  .pano{width:100%;height:80vh;min-height:480px;margin:7em 0;overflow:hidden;}
+  .pano-cap{text-align:center;font-size:clamp(1rem,2.4vw,1.4rem);font-weight:400;letter-spacing:.2em;margin-top:1.2em;color:var(--ivory);}
+
+  /* ---------- design gallery ---------- */
+  .design-gallery{display:grid;grid-template-columns:3fr 2fr;grid-template-rows:1fr 1fr;gap:.4em;height:82vh;min-height:540px;margin:0 0 .4em;}
+  .design-gallery-main{grid-column:1;grid-row:1/3;overflow:hidden;position:relative;}
+  .design-gallery-sub{overflow:hidden;position:relative;}
+  .design-gallery-main img,.design-gallery-sub img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .design-trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4em;margin:0 0 7em;}
+  .design-trio-item{overflow:hidden;position:relative;aspect-ratio:4/3;}
+  .design-trio-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  @media(max-width:760px){
+    .design-gallery{grid-template-columns:1fr;grid-template-rows:auto;height:auto;gap:.4em;}
+    .design-gallery-main{grid-row:auto;height:62vw;}
+    .design-gallery-sub{height:52vw;}
+    .design-trio{grid-template-columns:1fr;}
+    .design-trio-item{aspect-ratio:16/9;}
+  }
+
+  /* ---------- visit ---------- */
+  .visit{padding:20vh 0;background:var(--bg-deep);color:var(--ivory);position:relative;}
+  .visit .ph{background:#0a1a1d;}
+  .visit .ph::before{border-color:rgba(255,255,255,.1);}
+  .visit .ph::after{color:rgba(248,247,243,.25);}
+  .visit h2{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:400;letter-spacing:.18em;text-align:center;line-height:1.8;margin-bottom:1.6em;}
+  .visit .intro-line{text-align:center;color:var(--sumi-soft);font-size:.98rem;line-height:2.4;max-width:680px;margin:0 auto 5em;letter-spacing:.1em;font-weight:300;}
+  .visit-points{display:grid;grid-template-columns:repeat(3,1fr);gap:2.6em;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3.6em 0;margin-bottom:4em;}
+  .vp{text-align:center;}
+  .vp .k{font-family:var(--serif);font-size:.72rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:1em;}
+  .vp .v{font-size:1.3rem;font-weight:400;letter-spacing:.12em;margin-bottom:.6em;line-height:1.6;color:var(--ivory);}
+  .vp .d{font-size:.84rem;color:var(--sumi-soft);line-height:2;letter-spacing:.06em;font-weight:300;}
+  .spec{max-width:560px;margin:0 auto;}
+  .spec .row{display:flex;gap:1.5em;padding:1.1em 0;border-bottom:1px solid var(--line);font-size:.92rem;}
+  .spec .row .k{color:var(--gold);min-width:84px;letter-spacing:.16em;font-weight:300;}
+  .spec .row .v{color:var(--sumi-soft);letter-spacing:.06em;font-weight:300;}
+
+  /* ---------- form ---------- */
+  .reserve{padding:20vh 0 0;}
+  .closing{text-align:center;max-width:680px;margin:0 auto 6em;}
+  .closing p{font-size:clamp(1rem,2.2vw,1.3rem);line-height:2.6;font-weight:300;letter-spacing:.22em;color:var(--ivory);}
+  .reserve h2{text-align:center;font-size:clamp(1.5rem,3.5vw,2.1rem);font-weight:400;letter-spacing:.18em;margin-bottom:.6em;color:var(--ivory);}
+  .reserve .fsub{text-align:center;color:var(--ink-grey);font-size:.9rem;letter-spacing:.1em;margin-bottom:4em;font-weight:300;}
+  form{max-width:560px;margin:0 auto;}
+  .field{margin-bottom:2.2em;}
+  .field label{display:block;font-size:.85rem;letter-spacing:.18em;margin-bottom:.7em;color:var(--sumi-soft);font-weight:300;}
+  .field label .req{color:var(--gold);font-family:var(--serif);font-size:.7rem;letter-spacing:.1em;margin-left:.6em;}
+  .field label .opt{color:var(--ink-faint);font-size:.7rem;letter-spacing:.1em;margin-left:.6em;}
+  .field input,.field textarea{
+    width:100%;font-family:var(--mincho);font-size:.95rem;color:var(--ivory);font-weight:300;
+    background:transparent;border:none;border-bottom:1px solid var(--line);
+    padding:.7em .2em;letter-spacing:.06em;transition:border-color .4s;
+  }
+  .field input:focus,.field textarea:focus{outline:none;border-color:rgba(248,247,243,.6);}
+  .field input::placeholder,.field textarea::placeholder{color:rgba(248,247,243,.2);}
+  .field input,.field textarea{color-scheme:dark;}
+  .field textarea{resize:vertical;min-height:80px;}
+  .submit{
+    width:100%;font-family:var(--mincho);font-size:1rem;letter-spacing:.24em;font-weight:300;
+    background:rgba(248,247,243,.08);color:var(--ivory);border:1px solid rgba(248,247,243,.3);
+    padding:1.3em;cursor:pointer;margin-top:1em;transition:background .4s,border-color .4s;
+  }
+  .submit:hover{background:rgba(248,247,243,.15);border-color:rgba(248,247,243,.6);}
+  .note{text-align:center;font-size:.8rem;color:var(--ink-faint);margin-top:2em;line-height:2;letter-spacing:.08em;font-weight:300;}
+
+  /* footer */
+  footer{text-align:center;padding:7vh 0 5vh;margin-top:9vh;border-top:1px solid var(--line);}
+  footer .fmark{font-family:var(--serif);font-size:1.5rem;letter-spacing:.5em;text-indent:.5em;color:var(--ivory);margin-bottom:.8em;font-weight:400;}
+  footer .fline{font-family:var(--serif);font-size:.72rem;letter-spacing:.3em;color:var(--ink-faint);text-transform:uppercase;}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:760px){
+    .era-split{grid-template-columns:1fr;min-height:auto;}
+    .era-split-img{height:60vw;min-height:220px;}
+    .era-split:nth-child(even) .era-split-img{order:1;}
+    .era-split:nth-child(even) .era-split-txt{order:2;}
+    .era-split-txt{padding:3em 2em;}
+    .split{grid-template-columns:1fr;}
+    .split .txt{padding:2.4em 2em;}
+    .mat-strip{grid-template-columns:1fr;min-height:auto;}
+    .mat-strip-img{height:60vw;min-height:220px;}
+    .mat-strip:nth-child(even) .mat-strip-img{order:1;}
+    .mat-strip:nth-child(even) .mat-strip-txt{order:2;}
+    .mat-strip-txt{padding:2.5em 2em;}
+    .visit-points{grid-template-columns:1fr;gap:2.6em;}
+    .float-cta{right:16px;bottom:16px;padding:.9em 1.4em;font-size:.8rem;}
+    .hero .mark{letter-spacing:.3em;}
+  }
+</style>
+</head>
+<body>
+
+<!-- floating CTA -->
+<a href="#reserve" class="float-cta" id="floatCta"><span class="dot"></span>内覧を予約する</a>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg">
+    <video autoplay muted loop playsinline>
+      <source src="movie/test.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <img src="web2/hase_logo.png" alt="HASE" class="hero-logo">
+    <div class="mark-diamond"></div>
+    <div class="lead">波の音に、耳をすませる暮らし。</div>
+    <div class="place">Kamakura ・ Hase ・ Principal Home</div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><span class="ln"></span></div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section class="intro">
+  <div class="wrap">
+    <div class="band reveal"><img src="web2/kitchen.jpg" alt="HASE キッチン"></div>
+    <p class="reveal">鎌倉・長谷一丁目に、<br>一棟の<span class="accent">モデルハウス</span>が誕生しました。</p>
+    <p class="reveal d1 last">本物の石と無垢の木でつくる、歳月とともに美しくなる家。<br>その佇まいを、どうぞ現地でご覧ください。</p>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 1 ============ -->
+<section class="chapter">
+  <div class="narrow">
+    <div class="ch-head reveal">
+      <div class="eyebrow">The Story of Hase</div>
+      <div class="row">
+        <span class="ch-no">第 一 章</span>
+        <h2 class="ch-title">土地の物語</h2>
+      </div>
+      <div class="ch-sub">八百年、人に愛されてきた場所で</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="feature-img reveal" style="height:52vh;"><img src="web2/hase_fukan.jpg" alt="長谷 俯瞰"></div>
+  </div>
+  <div class="narrow">
+    <p class="body reveal">奈良時代より千三百年。この地には、木彫としては日本最大級と伝わる長谷観音さまが、人々を静かに見守ってきました。やがて鎌倉の世には、海を望む蓮の台座に、かの大仏さまが鎮座します。ふたつの祈りに抱かれたこの一帯は、訪れる者の心を、いつの時代もやわらかくほどいてきました。</p>
+  </div>
+
+  <div class="era-split reveal">
+    <div class="era-split-img"><img src="web2/daibutu.jpg" alt="鎌倉時代"></div>
+    <div class="era-split-txt">
+      <span class="jp">鎌倉時代</span>
+      <span class="en">Kamakura</span>
+      <p>将軍のかたわらで時代を動かした重臣たちが、喧騒を離れたこの長谷に静かな屋敷を構えました。今その地面を掘れば、海の向こうから運ばれた美しい焼き物がそっと顔を出す。誰にも知られず、けれど確かに、品格ある人々の暮らしがここにありました。</p>
+    </div>
+  </div>
+  <div class="era-split reveal">
+    <div class="era-split-img"><img src="web2/bungakukan.jpg" alt="明治 鎌倉文学館"></div>
+    <div class="era-split-txt">
+      <span class="jp">明治</span>
+      <span class="en">Meiji</span>
+      <p>加賀百万石の前田の殿様は、日本じゅうのどこにでも居を構えられる身でありながら、終の安らぎの地として、やはりこの長谷を選びました。相模湾を見はるかす高台に別邸を建て、「波の音を聴く山荘」と名づけたのです。その別邸は、いまも鎌倉文学館として静かに時を刻んでいます。</p>
+    </div>
+  </div>
+  <div class="era-split reveal">
+    <div class="era-split-img"><img src="web2/pixta_67344474_XL-(1).jpg" alt="昭和"></div>
+    <div class="era-split-txt">
+      <span class="jp">昭和</span>
+      <span class="en">Showa</span>
+      <p>その別邸を、時の宰相・佐藤栄作が週末の館として愛しました。ほど近い甘縄の杜のかたわらには、ノーベル文学賞作家・川端康成が居を構え、この地の響きを『山の音』に綴ります。女流作家・吉屋信子もまた、静謐な執筆の地を、この長谷に求めました。</p>
+    </div>
+  </div>
+
+  <div class="split reveal">
+    <div class="split-img"><img src="web2/FYI07901487-(1).jpg" alt="長谷"></div>
+    <div class="txt">
+      <h4>「木」と「水」の、得がたい吉地。</h4>
+      <p>背に山の緑をいただき、前に相模湾の水をたたえる長谷は、風水において「木」と「水」の気が豊かに巡り合う、得がたい吉地とされてきました。古都・鎌倉そのものが自然の地形に守られたなかでも、ことのほか恵まれた一角——それが、この長谷です。</p>
+    </div>
+  </div>
+
+  <div class="narrow">
+    <div class="pull reveal">
+      <div class="big">格を知る人は、いつの世も、この土地に還ってきました。</div>
+      <div class="small">その長く美しい系譜の、いちばん新しい一頁に、あなたの暮らしが加わります。</div>
+    </div>
+  </div>
+
+  <div class="narrow">
+    <div class="cta-block reveal">
+      <div class="line">この土地に、立ってみませんか。</div>
+      <div class="sub">八百年の系譜を、ご自身の足で。</div>
+      <a href="#reserve" class="btn"><span>内覧を予約する</span><span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 2 ============ -->
+<section class="materials">
+  <div class="narrow">
+    <div class="ch-head reveal">
+      <div class="eyebrow">The Story of Materials</div>
+      <div class="row">
+        <span class="ch-no">第 二 章</span>
+        <h2 class="ch-title">素材の物語</h2>
+      </div>
+      <div class="ch-sub">歳月を、味方につける家</div>
+    </div>
+    <p class="body mat-intro reveal">家には二種類あります。買った日が、いちばん美しい家。そして、暮らすほどに美しくなる家。この HASE は、迷うことなく後者を選びました。本物の石と無垢の木だけが持つ、時とともに深まる表情を、住まいの隅々にまで宿しています。</p>
+  </div>
+
+  <div class="mat-strips">
+    <div class="mat-strip reveal">
+      <div class="mat-strip-img"><img src="web2/oyaishi.jpg" alt="大谷石 リビング壁面"></div>
+      <div class="mat-strip-txt">
+        <div class="head"><span class="name">大谷石</span><span class="en">Oya</span></div>
+        <span class="use">リビング壁面</span>
+        <p>栃木・宇都宮の地中で、数百万年の歳月をかけ火山灰が固まって生まれた石。大正期、フランク・ロイド・ライトが旧帝国ホテルに用いて世界に知らしめました。触れれば、石肌の奥にやわらかな温度が宿ります。</p>
+      </div>
+    </div>
+    <div class="mat-strip reveal">
+      <div class="mat-strip-img"><img src="web2/gensho.jpg" alt="玄昌石 フロア"></div>
+      <div class="mat-strip-txt">
+        <div class="head"><span class="name">玄昌石</span><span class="en">Gensho</span></div>
+        <span class="use">フロア</span>
+        <p>宮城・雄勝に産する、二億年の時が生んだ粘板岩。古来より硯や屋根材として珍重され、今も東京駅丸の内駅舎の屋根を葺きます。深い漆黒が、足元から空間を引き締めます。</p>
+      </div>
+    </div>
+    <div class="mat-strip reveal">
+      <div class="mat-strip-img"><img src="web2/peeler.jpg" alt="ピーラー 軒天無垢材"></div>
+      <div class="mat-strip-txt">
+        <div class="head"><span class="name">ピーラー</span><span class="en">Peeler</span></div>
+        <span class="use">軒天無垢材</span>
+        <p>北米で数百年を生き抜いた米松の、年輪細やかな最上材のみを指す名。まっすぐ通った木目の美しさから名建築の天井や軒を飾り、年月とともに飴色の艶へと育ちます。</p>
+      </div>
+    </div>
+    <div class="mat-strip reveal">
+      <div class="mat-strip-img"><img src="web2/hinoki.jpg" alt="国産檜 廊下"></div>
+      <div class="mat-strip-txt">
+        <div class="head"><span class="name">国産檜</span><span class="en">Hinoki</span></div>
+        <span class="use">廊下</span>
+        <p>千三百年を超え法隆寺を支え続ける、日本の木の王。伐ってなお二百年は強さを増すといわれます。清らかな芳香とともに、歩むたび日本の風土が足裏に伝わります。</p>
+      </div>
+    </div>
+    <div class="mat-strip reveal">
+      <div class="mat-strip-img"><img src="web2/sugi.jpg" alt="北山杉 和室床框"></div>
+      <div class="mat-strip-txt">
+        <div class="head"><span class="name">北山杉</span><span class="en">Kitayama</span></div>
+        <span class="use">和室床框</span>
+        <p>室町の昔、茶の湯文化とともに京・北山で磨かれてきた銘木。職人が一本ずつ育て磨いた絹のような木肌が、床の間に凛とした品格を添えます。</p>
+      </div>
+    </div>
+    <div class="mat-strip reveal">
+      <div class="mat-strip-img"><img src="web2/akamatsu.jpg" alt="赤松丸太 和室床柱"></div>
+      <div class="mat-strip-txt">
+        <div class="head"><span class="name">赤松丸太</span><span class="en">Akamatsu</span></div>
+        <span class="use">和室床柱・天然皮付</span>
+        <p>山に自生した赤松を、皮をあえて残したまま床柱に仕立てる、数寄屋建築の粋。一本として同じ表情はなく、自然のままの曲がりと皮肌が、和室の中心に野趣と格を宿します。</p>
+      </div>
+    </div>
+    <div class="mat-strip reveal">
+      <div class="mat-strip-img"><img src="web2/kurama.jpg" alt="鞍馬石 和室の庭"></div>
+      <div class="mat-strip-txt">
+        <div class="head"><span class="name">鞍馬石</span><span class="en">Kurama</span></div>
+        <span class="use">和室の庭</span>
+        <p>京都・鞍馬の山が育み、鉄分を含んで赤茶に錆びゆく自然石。古来茶人や作庭家が侘びの景として庭に据えました。時雨に濡れるほど、深い味わいを見せます。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="narrow">
+    <p class="body mat-foot reveal">これらの本物には、ひとつの共通点があります。新品の輝きは、ほんの始まりにすぎないということ。月日が降り積もるほどに、石は深みを増し、木は飴色の艶をまとっていく。この HASE は、住む人とともに、ゆっくりと美しく齢を重ねていきます。</p>
+    <div class="cta-block reveal">
+      <div class="line">本物の質感は、触れて初めて伝わります。</div>
+      <div class="sub">石の温度、檜の香り、木の艶を、現地で。</div>
+      <a href="#reserve" class="btn"><span>内覧を予約する</span><span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 3 ============ -->
+<section class="design">
+  <div class="narrow">
+    <div class="ch-head reveal">
+      <div class="eyebrow">The Story of Design</div>
+      <div class="row">
+        <span class="ch-no">第 三 章</span>
+        <h2 class="ch-title">デザインの物語</h2>
+      </div>
+      <div class="ch-sub">内と外の、境界をなくす</div>
+    </div>
+  </div>
+
+  <div class="design-gallery reveal">
+    <div class="design-gallery-main"><img src="web2/genkan.png" alt="玄関"></div>
+    <div class="design-gallery-sub"><img src="web2/DSC_6408.jpg" alt="リビング"></div>
+    <div class="design-gallery-sub"><img src="web2/DSC_6602_fix.jpg" alt="内観"></div>
+  </div>
+
+  <div class="design-trio reveal">
+    <div class="design-trio-item"><img src="web2/fukan.jpg" alt="俯瞰"></div>
+    <div class="design-trio-item"><img src="web2/washitu.jpg" alt="和室"></div>
+    <div class="design-trio-item"><img src="web2/bedroom.jpg" alt="寝室"></div>
+  </div>
+
+  <div class="narrow">
+    <p class="body reveal">この邸宅の設計には、ひとつの静かな思想が流れています。内と外を隔てる「境界」を、そっと消してしまうということ。</p>
+    <p class="body reveal">玄関のポーチから、室内のホール、奥のギャラリーへと——足元のタイルは、一切途切れることなく続いていきます。どこからが外で、どこからが内なのか。その境目を、あえて曖昧にしました。巨匠ミース・ファン・デル・ローエが床材を内外に貫かせ、境を溶かしてみせたように。</p>
+    <p class="body reveal">視線は床を伝って、自然と外へ抜けていきます。海風の気配、古都の緑、移ろう光。それらが遠い「風景」ではなく、暮らしのすぐ隣にある「空気」として、住まいのなかへ静かに流れ込んでくる。</p>
+    <div class="pull reveal">
+      <div class="big">視線をさえぎるのではなく、気配を招き入れる。</div>
+      <div class="small">内と外を、ひと続きに。</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="pano reveal"><img src="web/Hase_balcony.png" alt="ルーフバルコニーからの眺望"></div>
+  </div>
+
+  <div class="narrow">
+    <p class="body reveal">その先にあるのは、最上階の特等席。視界をさえぎるものが何ひとつないルーフバルコニーに立てば、相模湾の青も、長谷の空も、もう「眺めるもの」ではありません。海と空のあいだに境界はなく、この場所すべてが我が家の延長になる——。かつて殿様が波音に耳をすませたように、自然とひとつに溶け合う暮らしが、ここから始まります。</p>
+    <div class="pano-cap reveal">この眺めは、ここに立った人だけのものです。</div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="visit">
+  <div class="wrap">
+    <div class="band reveal"><img src="web2/facade2.png" alt="HASE ファサード"></div>
+    <h2 class="reveal">静けさのなかで、<br>この家と向き合う時間を。</h2>
+    <p class="intro-line reveal">波の音。石肌のやわらかな温度。檜の芳香。ルーフバルコニーに広がる、海と空。<br>この HASE の価値は、写真や言葉では、その半分も伝わりません。<br>どうぞ、ご自身の五感で確かめてください。</p>
+
+    <div class="visit-points reveal">
+      <div class="vp">
+        <div class="k">Limited</div>
+        <div class="v">1日2組<br>限定</div>
+        <div class="d">完全予約制。ゆとりをもって、この家と過ごす時間をご用意します。</div>
+      </div>
+      <div class="vp">
+        <div class="k">Private</div>
+        <div class="v">個別<br>ご案内</div>
+        <div class="d">他のお客様と顔を合わせることはありません。どうぞご自分のペースで。</div>
+      </div>
+      <div class="vp">
+        <div class="k">Time</div>
+        <div class="v">約60分</div>
+        <div class="d">土地の物語から素材のひとつひとつ、眺望まで、丁寧にご案内します。</div>
+      </div>
+    </div>
+
+    <div class="spec reveal">
+      <div class="row"><span class="k">所在地</span><span class="v">神奈川県鎌倉市長谷一丁目</span></div>
+      <div class="row"><span class="k">構造</span><span class="v">木造軸組構法</span></div>
+      <div class="row"><span class="k">間取り</span><span class="v">4SLDK ＋ 大型バルコニー</span></div>
+      <div class="row"><span class="k">土地面積</span><span class="v">308.07㎡（有効敷地面積）</span></div>
+      <div class="row"><span class="k">建物面積</span><span class="v">255.49㎡（ガレージ含む）</span></div>
+      <div class="row"><span class="k">価格</span><span class="v">3億5800万円（うち消費税 1,780万円）</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVE ============ -->
+<section class="reserve" id="reserve">
+  <div class="wrap">
+    <div class="band reveal"><img src="web2/Fuji%26sea.png" alt="富士と海"></div>
+    <div class="closing reveal">
+      <p>買うのではなく、受け継ぐ。<br>住まうのではなく、暮らしを紡ぐ。<br>本物に囲まれた日々は、住まう人の心まで、静かに豊かに育てていく。<br>——そんな一生に出会う場所が、ここにあります。</p>
+    </div>
+  </div>
+
+  <div class="narrow">
+    <h2 class="reveal">内覧のご予約</h2>
+    <p class="fsub reveal">下記をご記入のうえ、送信してください。担当より、ご希望日の調整についてご連絡を差し上げます。</p>
+
+    <form class="reveal" id="reserveForm" novalidate>
+      <div class="field">
+        <label>お名前<span class="req">必須</span></label>
+        <input type="text" name="name" required>
+      </div>
+      <div class="field">
+        <label>ご連絡先（電話番号）<span class="req">必須</span></label>
+        <input type="tel" name="tel" required>
+      </div>
+      <div class="field">
+        <label>メールアドレス<span class="req">必須</span></label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="field">
+        <label>ご希望日｜第1希望<span class="req">必須</span></label>
+        <input type="date" name="date1" required>
+      </div>
+      <div class="field">
+        <label>ご希望日｜第2希望<span class="opt">任意</span></label>
+        <input type="date" name="date2">
+      </div>
+      <div class="field">
+        <label>ご質問・ご要望<span class="opt">任意</span></label>
+        <textarea name="message" rows="3"></textarea>
+      </div>
+      <button type="submit" class="submit">この内容で予約を申し込む</button>
+      <p class="note">1日2組さま限定のため、ご希望に添えない場合がございます。あらかじめご了承ください。</p>
+    </form>
+  </div>
+
+  <footer>
+    <div class="fmark">HASE</div>
+    <div class="fline">Kamakura ・ Hase ・ Principal Home</div>
+  </footer>
+</section>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // floating CTA appears after hero
+  const fc = document.getElementById('floatCta');
+  const hero = document.querySelector('.hero');
+  const heroIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ fc.classList.toggle('show', !e.isIntersecting); });
+  },{threshold:.2});
+  heroIo.observe(hero);
+
+  // hide floating CTA when form is in view (avoid overlap)
+  const reserve = document.getElementById('reserve');
+  const resIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) fc.classList.remove('show'); });
+  },{threshold:.15});
+  resIo.observe(reserve);
+
+  // form (front-end placeholder — connect to mail/CRM on integration)
+  document.getElementById('reserveForm').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    alert('ご予約のお申し込みを受け付けました。\n（※デモ表示です。送信先の設定後に実際の通知が届きます。）');
+  });
+</script>
+</body>
+</html>

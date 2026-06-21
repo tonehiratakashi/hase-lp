@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "hase-lp",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/tmp/hase_serve.py"],
+      "port": 3456,
+      "autoPort": true
+    }
+  ]
+}
