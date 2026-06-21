@@ -192,6 +192,17 @@
   .scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;color:var(--ivory);font-family:var(--serif);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.9em;opacity:.55;}
   .scroll-hint .ln{width:1px;height:46px;background:rgba(248,247,243,.5);animation:drop 2.4s ease-in-out infinite;transform-origin:top;}
   @keyframes drop{0%,100%{transform:scaleY(.3);opacity:.3;}50%{transform:scaleY(1);opacity:.9;}}
+  /* hero sound toggle */
+  .sound-toggle{position:absolute;bottom:34px;right:clamp(1.5rem,4vw,3.5rem);z-index:3;display:flex;align-items:center;gap:.7em;
+    background:rgba(0,18,21,.32);border:1px solid rgba(248,247,243,.35);border-radius:100px;
+    padding:.6em 1.1em;color:var(--ivory);cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    transition:background .4s,border-color .4s,opacity .4s;opacity:.85;}
+  .sound-toggle:hover{background:rgba(0,18,21,.55);border-color:rgba(248,247,243,.6);opacity:1;}
+  .sound-toggle svg{width:18px;height:18px;display:block;}
+  .sound-toggle .ic-sound{display:none;}
+  .sound-toggle.on .ic-sound{display:block;}
+  .sound-toggle.on .ic-muted{display:none;}
+  .sound-label{font-family:var(--serif);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;}
 
   /* ---------- INTRO ---------- */
   .intro{padding:18vh 0 22vh;text-align:center;}
@@ -392,7 +403,7 @@
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="hero-bg">
-    <iframe src="https://www.youtube.com/embed/o8ZQD-jTgro?autoplay=1&mute=1&loop=1&playlist=o8ZQD-jTgro&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3" title="HASE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe id="heroVideo" src="https://www.youtube.com/embed/o8ZQD-jTgro?autoplay=1&mute=1&loop=1&playlist=o8ZQD-jTgro&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3&enablejsapi=1" title="HASE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-inner">
@@ -401,6 +412,11 @@
     <div class="lead">波の音に、耳をすませる暮らし。</div>
     <div class="place">Kamakura ・ Hase ・ Principal Home</div>
   </div>
+  <button class="sound-toggle" id="soundToggle" aria-label="音声をオンにする" aria-pressed="false">
+    <svg class="ic-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
+    <svg class="ic-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+    <span class="sound-label">SOUND</span>
+  </button>
   <div class="scroll-hint"><span>Scroll</span><span class="ln"></span></div>
 </section>
 
@@ -713,6 +729,29 @@
     document.body.style.overflow = open ? 'hidden' : '';
   });
   navOverlay.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+
+  // hero video sound toggle (YouTube IFrame API)
+  let heroPlayer = null;
+  const soundBtn = document.getElementById('soundToggle');
+  (function loadYT(){
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  })();
+  window.onYouTubeIframeAPIReady = function(){
+    heroPlayer = new YT.Player('heroVideo');
+  };
+  soundBtn.addEventListener('click', ()=>{
+    if(!heroPlayer || typeof heroPlayer.isMuted !== 'function') return;
+    const muted = heroPlayer.isMuted();
+    if(muted){ heroPlayer.unMute(); heroPlayer.setVolume(100); }
+    else { heroPlayer.mute(); }
+    const on = muted; // now unmuted if it was muted
+    soundBtn.classList.toggle('on', on);
+    soundBtn.setAttribute('aria-pressed', on ? 'true':'false');
+    soundBtn.setAttribute('aria-label', on ? '音声をオフにする' : '音声をオンにする');
+    soundBtn.querySelector('.sound-label').textContent = on ? 'SOUND ON' : 'SOUND';
+  });
 
   // scroll reveal
   const io = new IntersectionObserver((entries)=>{
