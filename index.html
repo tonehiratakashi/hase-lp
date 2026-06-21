@@ -176,6 +176,7 @@
   .nav-overlay .overlay-cta{margin-top:.6em;border:1px solid rgba(248,247,243,.4);padding:.7em 2em;font-size:1rem;}
   /* anchor offset for fixed header */
   section[id]{scroll-margin-top:80px;}
+  #booking{scroll-margin-top:100px;}
   @media (max-width:860px){
     .site-nav{display:none;}
     .nav-toggle{display:flex;}
@@ -389,7 +390,7 @@
     <a href="#materials">素材の物語</a>
     <a href="#design">デザインの物語</a>
     <a href="#visit">物件概要</a>
-    <a href="#reserve" class="nav-cta">内覧予約</a>
+    <a href="#booking" class="nav-cta">内覧予約</a>
   </nav>
   <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -403,11 +404,11 @@
   <a href="#materials">素材の物語</a>
   <a href="#design">デザインの物語</a>
   <a href="#visit">物件概要</a>
-  <a href="#reserve" class="overlay-cta">内覧予約</a>
+  <a href="#booking" class="overlay-cta">内覧予約</a>
 </div>
 
 <!-- floating CTA -->
-<a href="#reserve" class="float-cta" id="floatCta"><span class="dot"></span>内覧を予約する</a>
+<a href="#booking" class="float-cta" id="floatCta"><span class="dot"></span>内覧を予約する</a>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
@@ -502,7 +503,7 @@
     <div class="cta-block reveal">
       <div class="line">この土地に、立ってみませんか。</div>
       <div class="sub">八百年の系譜を、ご自身の足で。</div>
-      <a href="#reserve" class="btn"><span>内覧を予約する</span><span class="arr">→</span></a>
+      <a href="#booking" class="btn"><span>内覧を予約する</span><span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -585,7 +586,7 @@
     <div class="cta-block reveal">
       <div class="line">本物の質感は、触れて初めて伝わります。</div>
       <div class="sub">石の温度、檜の香り、木の艶を、現地で。</div>
-      <a href="#reserve" class="btn"><span>内覧を予約する</span><span class="arr">→</span></a>
+      <a href="#booking" class="btn"><span>内覧を予約する</span><span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -680,7 +681,7 @@
     </div>
   </div>
 
-  <div class="narrow">
+  <div class="narrow" id="booking">
     <h2 class="reveal">内覧のご予約</h2>
     <p class="fsub reveal">下記をご記入のうえ、送信してください。担当より、ご希望日の調整についてご連絡を差し上げます。</p>
 
