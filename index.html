@@ -181,6 +181,14 @@
   .nav-overlay.open a:nth-child(6){transition-delay:.4s;}
   .nav-overlay a:hover{color:var(--gold);}
   .nav-overlay .overlay-cta{margin-top:.6em;border:1px solid rgba(248,247,243,.4);padding:.7em 2em;font-size:1rem;}
+  /* overlay close button — sits at same position as hamburger button */
+  .nav-close{position:absolute;top:1.45em;right:clamp(1.5rem,5vw,3.5rem);
+    width:38px;height:38px;background:none;border:none;cursor:pointer;
+    color:var(--ivory);display:flex;align-items:center;justify-content:center;
+    opacity:0;transition:opacity .35s ease .05s,color .3s;}
+  .nav-overlay.open .nav-close{opacity:1;}
+  .nav-close:hover{color:var(--gold);}
+  .nav-close svg{width:22px;height:22px;}
   /* anchor offset for fixed header */
   section[id]{scroll-margin-top:80px;}
   #booking{scroll-margin-top:100px;}
@@ -406,6 +414,11 @@
 
 <!-- mobile overlay menu -->
 <div class="nav-overlay" id="navOverlay">
+  <button class="nav-close" id="navClose" aria-label="メニューを閉じる">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
+    </svg>
+  </button>
   <a href="#top">ホーム</a>
   <a href="#land">土地の物語</a>
   <a href="#materials">素材の物語</a>
@@ -750,6 +763,7 @@
     document.body.style.overflow = open ? 'hidden' : '';
   });
   navOverlay.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+  document.getElementById('navClose').addEventListener('click', closeMenu);
 
   // hero video sound toggle (YouTube IFrame API)
   let heroPlayer = null;
